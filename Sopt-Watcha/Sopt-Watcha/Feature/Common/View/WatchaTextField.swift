@@ -8,6 +8,8 @@
 import UIKit
 
 class WatchaTextField: UITextField {
+    var rightIcon: UIImage? = nil
+
     private let clearButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "Close Square"), for: .normal)
@@ -55,13 +57,24 @@ class WatchaTextField: UITextField {
         sendActions(for: .editingChanged)
     }
 
+    private func makeFocusRightView() -> UIView {
+        var totalWidth = clearButton.frame.width
+        if rightIcon != nil { totalWidth += 24 + 8 }
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: totalWidth + 10, height: clearButton.frame.height))
+        clearButton.frame.origin.x = 0
+        container.addSubview(clearButton)
+        if let icon = rightIcon {
+            let iconView = UIImageView(image: icon)
+            iconView.frame = CGRect(x: clearButton.frame.width + 8, y: 0, width: 24, height: 24)
+            container.addSubview(iconView)
+        }
+        return container
+    }
+
     private func setFocusTextField() {
         layer.borderWidth = 1
         layer.borderColor = UIColor.gray200.cgColor
-        let container = UIView(frame: CGRect(x: 0, y: 0, width: clearButton.frame.width + 10, height: clearButton.frame.height))
-        clearButton.frame.origin.x = 0
-        container.addSubview(clearButton)
-        rightView = container
+        rightView = makeFocusRightView()
         rightViewMode = .always
     }
 
