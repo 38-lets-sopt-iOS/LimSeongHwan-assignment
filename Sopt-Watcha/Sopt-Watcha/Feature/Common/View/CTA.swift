@@ -10,6 +10,7 @@ import UIKit
 class CTA: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.setup()
     }
     
     required init?(coder: NSCoder) {
