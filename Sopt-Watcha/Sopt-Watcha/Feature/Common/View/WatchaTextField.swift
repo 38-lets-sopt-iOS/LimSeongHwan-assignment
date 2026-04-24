@@ -50,10 +50,8 @@ class WatchaTextField: UITextField {
         layer.cornerRadius = 10
         textColor = .white
         font = .body2
-        attributedPlaceholder = NSAttributedString(
-            string: placeholder,
-            attributes: [.foregroundColor: UIColor.gray300]
-        )
+        setPlaceHolder(placeholder: placeholder, color: .gray300)
+        tintColor = .pink
         leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
         leftViewMode = .always
         clearButton.addTarget(self, action: #selector(didTapClearButton), for: .touchUpInside)
