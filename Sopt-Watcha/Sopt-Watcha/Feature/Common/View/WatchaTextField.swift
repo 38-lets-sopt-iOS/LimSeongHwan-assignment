@@ -9,6 +9,13 @@ import UIKit
 
 class WatchaTextField: UITextField {
     var rightIcon: UIImage? = nil
+    var onRightIconTapped: (() -> Void)? = nil
+
+    private let rightIconButton: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        return button
+    }()
 
     private let clearButton: UIButton = {
         let button = UIButton()
@@ -50,11 +57,23 @@ class WatchaTextField: UITextField {
         leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
         leftViewMode = .always
         clearButton.addTarget(self, action: #selector(didTapClearButton), for: .touchUpInside)
+        rightIconButton.addTarget(self, action: #selector(didTapRightIcon), for: .touchUpInside)
     }
 
     @objc private func didTapClearButton() {
         text = nil
         sendActions(for: .editingChanged)
+    }
+
+    @objc private func didTapRightIcon() {
+        onRightIconTapped?()
+    }
+    
+    func updateRightIcon(_ image: UIImage?) {
+        rightIcon = image
+        if rightView != nil {
+            rightView = makeFocusRightView()
+        }
     }
 
     private func makeFocusRightView() -> UIView {
@@ -64,9 +83,9 @@ class WatchaTextField: UITextField {
         clearButton.frame.origin.x = 0
         container.addSubview(clearButton)
         if let icon = rightIcon {
-            let iconView = UIImageView(image: icon)
-            iconView.frame = CGRect(x: clearButton.frame.width + 8, y: 0, width: 24, height: 24)
-            container.addSubview(iconView)
+            rightIconButton.setImage(icon, for: .normal)
+            rightIconButton.frame = CGRect(x: clearButton.frame.width + 8, y: 0, width: 24, height: 24)
+            container.addSubview(rightIconButton)
         }
         return container
     }

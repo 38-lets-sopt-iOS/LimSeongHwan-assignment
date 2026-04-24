@@ -162,6 +162,9 @@ class PasswordViewController: UIViewController {
         nickNameButton.addTarget(self, action: #selector(nickNameButtonDidTap), for: .touchUpInside)
         passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         nextButton.addTarget(self, action: #selector(navigateToWelcomeVC), for: .touchUpInside)
+        passwordTextField.onRightIconTapped = { [weak self] in
+            self?.togglePasswordTapped()
+        }
     }
 
     @objc private func textFieldDidChange() {
@@ -188,6 +191,13 @@ class PasswordViewController: UIViewController {
         WelcomeVC.nickName = nickName
         navigationController?.pushViewController(WelcomeVC, animated: true)
         
+    }
+    
+    @objc
+    private func togglePasswordTapped() {
+        passwordTextField.isSecureTextEntry.toggle()
+        let isSecure = passwordTextField.isSecureTextEntry
+        passwordTextField.updateRightIcon(UIImage(named: isSecure ? "eye-off" : "eye-on"))
     }
 }
 
