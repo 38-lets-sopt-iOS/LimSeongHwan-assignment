@@ -5,10 +5,20 @@
 //  Created by 성환 on 4/24/26.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 class PasswordViewController: UIViewController {
+    // MARK: - 프로퍼티
+
+    var email: String = ""
+    var nickName: String = ""
+    private var hasNickname: Bool = false {
+        didSet { updateNextButton() }
+    }
+
+    // MARK: - UI
+
     private let titleLabel: AuthTitleLabel = {
         let label = AuthTitleLabel()
         label.text = "사용할 비밀번호를\n입력해주세요"
@@ -22,11 +32,7 @@ class PasswordViewController: UIViewController {
         return stackView
     }()
     
-    private let subLabel: AuthSubLabel = {
-        let label = AuthSubLabel()
-        label.text = "~~로 가입중"
-        return label
-    }()
+    private let subLabel: AuthSubLabel = .init()
     
     private let passwordTextField: WatchaTextField = {
         let textField = WatchaTextField(placeholder: "비밀번호 입력")
@@ -79,16 +85,21 @@ class PasswordViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         setLayout()
+        bind()
+        setAction()
     }
     
+    // MARK: - 레이아웃
+
     private func setUI() {
         subLabelStackView.addStackViews(subLabel)
         regStackView.addStackViews(regIcon, regLabel)
-        nickNameButton.addTarget(self, action: #selector(nickNameButtonDidTap), for: .touchUpInside)
         view.addSubviews(titleLabel, subLabelStackView, regStackView, passwordTextField, nickNameButton, nextButton)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         subLabelStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -112,27 +123,78 @@ class PasswordViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(31)
             $0.height.equalTo(47)
         }
-        regStackView.snp.makeConstraints{
+        regStackView.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(13)
             $0.leading.equalToSuperview().inset(35)
         }
-        nickNameButton.snp.makeConstraints{
+        nickNameButton.snp.makeConstraints {
             $0.top.equalTo(regStackView.snp.bottom).offset(40)
             $0.centerX.equalToSuperview()
         }
-        nextButton.snp.makeConstraints{
+        nextButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(22)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(13)
             $0.height.equalTo(56)
         }
     }
     
+    // MARK: - Bind
+
+    func bind() {
+        subLabel.text = "\(email)로 가입중"
+    }
+    
+    func configure(nickName: String?) {
+        self.nickName = nickName ?? "닉네임"
+        hasNickname = true
+        nickNameButton.setAttributedTitle(
+            NSAttributedString(
+                string: nickName ?? "닉네임 설정",
+                attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue]
+            ),
+            for: .normal
+        )
+    }
+    
+    // MARK: - 액션
+
+    private func setAction() {
+        nickNameButton.addTarget(self, action: #selector(nickNameButtonDidTap), for: .touchUpInside)
+        passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        nextButton.addTarget(self, action: #selector(navigateToWelcomeVC), for: .touchUpInside)
+    }
+
+    @objc private func textFieldDidChange() {
+        updateNextButton()
+    }
+
+    private func updateNextButton() {
+        nextButton.isEnabled = !(passwordTextField.text?.isEmpty ?? true) && hasNickname
+    }
+    
     @objc
     func nickNameButtonDidTap() {
         let nicknameSheet = NicknameSheet()
+        nicknameSheet.delegate = self
         nicknameSheet.sheetPresentationController?.detents = [.medium()]
         nicknameSheet.sheetPresentationController?.preferredCornerRadius = 12
         nicknameSheet.sheetPresentationController?.prefersGrabberVisible = true
         present(nicknameSheet, animated: true)
+    }
+    
+    @objc
+    private func navigateToWelcomeVC() {
+        let WelcomeVC = WelcomeViewController()
+        WelcomeVC.nickName = nickName
+        navigationController?.pushViewController(WelcomeVC, animated: true)
+        
+    }
+}
+
+// MARK: - NicknameSheetDelegateProtocol
+
+extension PasswordViewController: NicknameSheetDelegateProtocol {
+    func setNickname(nickname: String) {
+        configure(nickName: nickname)
     }
 }

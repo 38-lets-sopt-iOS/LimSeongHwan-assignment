@@ -9,6 +9,8 @@ import SnapKit
 import UIKit
 
 class LoginViewController: UIViewController {
+    // MARK: - UI
+
     private let titleLabel: AuthTitleLabel = {
         let label = AuthTitleLabel()
         label.text = "로그인/가입하려는\n이메일을 입력해주세요"
@@ -53,7 +55,10 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        setAction()
     }
+
+    // MARK: - 레이아웃
     
     private func setUI() {
         subLabelStackView.addStackViews(subLabel, subLabel2)
@@ -63,7 +68,7 @@ class LoginViewController: UIViewController {
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         nextButton.translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
     private func setLayout() {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(109)
@@ -78,10 +83,28 @@ class LoginViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(31)
             $0.height.equalTo(47)
         }
-        nextButton.snp.makeConstraints{
+        nextButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(22)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(13)
             $0.height.equalTo(56)
         }
+    }
+    
+    // MARK: - 액션
+
+    private func setAction() {
+        emailTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        nextButton.addTarget(self, action: #selector(navigateToPasswordVC), for: .touchUpInside)
+    }
+
+    @objc private func textFieldDidChange() {
+        nextButton.isEnabled = !(emailTextField.text?.isEmpty ?? true)
+    }
+    
+    @objc
+    func navigateToPasswordVC() {
+        let passwordVC = PasswordViewController()
+        passwordVC.email = emailTextField.text ?? ""
+        navigationController?.pushViewController(passwordVC, animated: true)
     }
 }

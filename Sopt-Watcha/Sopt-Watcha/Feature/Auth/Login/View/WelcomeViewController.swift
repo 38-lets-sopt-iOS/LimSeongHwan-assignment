@@ -9,6 +9,8 @@ import SnapKit
 import UIKit
 
 class WelcomeViewController: UIViewController {
+    var nickName: String?
+    
     private let logoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "WatchaLogo")
@@ -17,7 +19,7 @@ class WelcomeViewController: UIViewController {
     
     private let welcomeLabel: UILabel = {
         let label = UILabel()
-        label.text = "~~님\n가입을 환영합니다"
+        label.text = "가입을 환영합니다"
         label.font = .head2
         label.textColor = .white
         label.textAlignment = .center
@@ -35,6 +37,7 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        bind()
     }
     
     private func setUI() {
@@ -58,5 +61,9 @@ class WelcomeViewController: UIViewController {
             $0.horizontalEdges.equalToSuperview().inset(22)
             $0.height.equalTo(56)
         }
+    }
+    
+    func bind() {
+        welcomeLabel.text = "\(nickName ?? "닉네임")님\n가입을 환영합니다!"
     }
 }

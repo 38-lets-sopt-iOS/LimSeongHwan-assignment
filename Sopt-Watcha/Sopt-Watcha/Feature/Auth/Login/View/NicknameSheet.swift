@@ -8,7 +8,13 @@
 import SnapKit
 import UIKit
 
+protocol NicknameSheetDelegateProtocol: AnyObject {
+    func setNickname(nickname: String)
+}
+
 class NicknameSheet: UIViewController {
+    weak var delegate: NicknameSheetDelegateProtocol?
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "닉네임을 입력해주세요"
@@ -29,6 +35,7 @@ class NicknameSheet: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        setAction()
     }
 
     private func setUI() {
@@ -51,5 +58,17 @@ class NicknameSheet: UIViewController {
             $0.horizontalEdges.equalToSuperview().inset(22)
             $0.height.equalTo(56)
         }
+    }
+    
+    private func setAction() {
+        button.addTarget(self, action: #selector(didTapFinishButton), for: .touchUpInside)
+    }
+    
+    @objc
+    private func didTapFinishButton() {
+        if let nickname = nicknameTextField.text, !nickname.isEmpty {
+            delegate?.setNickname(nickname: nickname)
+        }
+        dismiss(animated: true)
     }
 }
