@@ -32,8 +32,8 @@ class CTABool: UIButton {
 
     private func setEnableButton() {
         isUserInteractionEnabled = true
-        backgroundColor = .pink
-        setTitleColor(.white, for: .normal)
+        backgroundColor = .watchaPink
+        setTitleColor(.watchaWhite, for: .normal)
     }
 
     private func setDisableButton() {

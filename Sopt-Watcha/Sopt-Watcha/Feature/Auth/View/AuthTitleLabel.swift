@@ -18,7 +18,7 @@ final class AuthTitleLabel: UILabel {
     }
     
     private func setUp() {
-        textColor = .white
+        textColor = .watchaWhite
         font = .head2
         numberOfLines = 2
     }

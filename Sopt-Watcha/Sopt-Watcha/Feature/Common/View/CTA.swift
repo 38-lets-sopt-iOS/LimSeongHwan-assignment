@@ -22,6 +22,6 @@ class CTA: UIButton {
         self.layer.cornerRadius = 10
         self.titleLabel?.textAlignment = .center
         self.titleLabel?.font = .medium
-        setTitleColor(.white, for: .normal)
+        setTitleColor(.watchaWhite, for: .normal)
     }
 }
