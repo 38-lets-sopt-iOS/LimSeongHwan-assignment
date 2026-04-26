@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
         $0.setTitle("다음", for: .normal)
         $0.isEnabled = false
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
     }
 
     // MARK: - 레이아웃
-    
+
     private func setUI() {
         subLabelStackView.addStackViews(subLabel, subLabel2)
         view.addSubviews(titleLabel, subLabelStackView, emailTextField, nextButton)
@@ -78,7 +78,7 @@ class LoginViewController: UIViewController {
             $0.height.equalTo(56)
         }
     }
-    
+
     // MARK: - 액션
 
     private func setAction() {
@@ -87,9 +87,11 @@ class LoginViewController: UIViewController {
     }
 
     @objc private func textFieldDidChange() {
-        nextButton.isEnabled = !(emailTextField.text?.isEmpty ?? true)
+        let isValid = emailTextField.text?.isValidEmail ?? false
+        emailTextField.updateRightIcon(isValid ? .checkOn : .checkOff)
+        nextButton.isEnabled = isValid
     }
-    
+
     @objc
     func navigateToPasswordVC() {
         let passwordVC = PasswordViewController()

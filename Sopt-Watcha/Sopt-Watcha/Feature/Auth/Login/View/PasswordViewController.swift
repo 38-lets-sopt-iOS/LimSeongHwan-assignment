@@ -152,11 +152,19 @@ class PasswordViewController: UIViewController {
     }
 
     @objc private func textFieldDidChange() {
+        let isVaild = passwordTextField.text?.isValidPassword ?? false
+        if isVaild {
+            regIcon.image = .enableOn
+            regLabel.textColor = .watchaGreen
+        } else {
+            regIcon.image = .enableOff
+            regLabel.textColor = .gray100
+        }
         updateNextButton()
     }
 
     private func updateNextButton() {
-        nextButton.isEnabled = !(passwordTextField.text?.isEmpty ?? true) && hasNickname
+        nextButton.isEnabled = ((passwordTextField.text?.isValidPassword) != false) && hasNickname
     }
     
     @objc
