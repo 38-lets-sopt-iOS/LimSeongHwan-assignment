@@ -6,6 +6,7 @@
 //
 
 import SnapKit
+import Then
 import UIKit
 
 protocol NicknameSheetDelegateProtocol: AnyObject {
@@ -14,22 +15,18 @@ protocol NicknameSheetDelegateProtocol: AnyObject {
 
 class NicknameSheet: UIViewController {
     weak var delegate: NicknameSheetDelegateProtocol?
-    
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "닉네임을 입력해주세요"
-        label.font = .subHead1
-        label.textColor = .white
-        return label
-    }()
+
+    private let titleLabel = UILabel().then {
+        $0.text = "닉네임을 입력해주세요"
+        $0.font = .subHead1
+        $0.textColor = .white
+    }
 
     private let nicknameTextField: WatchaTextField = .init(placeholder: "닉네임을 입력해주세요")
 
-    private let button: CTA = {
-        let button = CTA()
-        button.setTitle("완료", for: .normal)
-        return button
-    }()
+    private let button = CTA().then {
+        $0.setTitle("완료", for: .normal)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

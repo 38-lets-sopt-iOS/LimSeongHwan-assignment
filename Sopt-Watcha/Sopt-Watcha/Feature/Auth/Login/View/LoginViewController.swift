@@ -6,50 +6,39 @@
 //
 
 import SnapKit
+import Then
 import UIKit
 
 class LoginViewController: UIViewController {
     // MARK: - UI
 
-    private let titleLabel: AuthTitleLabel = {
-        let label = AuthTitleLabel()
-        label.text = "로그인/가입하려는\n이메일을 입력해주세요"
-        return label
-    }()
-    
-    private let subLabelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 5
-        return stackView
-    }()
-    
-    private let subLabel: AuthSubLabel = {
-        let label = AuthSubLabel()
-        label.text = "결제 등 중요 정보 알림, 로그인, 비밀번호 찾기에 필요해요"
-        return label
-    }()
-    
-    private let subLabel2: AuthSubLabel = {
-        let label = AuthSubLabel()
-        label.text = "사용 중인 이메일을 입력해주세요"
-        return label
-    }()
-    
-    private let emailTextField: WatchaTextField = {
-        let textField = WatchaTextField(placeholder: "email@address.com")
-        textField.keyboardType = .emailAddress
-        textField.returnKeyType = .done
-        textField.rightIcon = UIImage(named: "check-off")
-        return textField
-    }()
-    
-    private let nextButton: CTABool = {
-        let button = CTABool()
-        button.setTitle("다음", for: .normal)
-        button.isEnabled = false
-        return button
-    }()
+    private let titleLabel = AuthTitleLabel().then {
+        $0.text = "로그인/가입하려는\n이메일을 입력해주세요"
+    }
+
+    private let subLabelStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 5
+    }
+
+    private let subLabel = AuthSubLabel().then {
+        $0.text = "결제 등 중요 정보 알림, 로그인, 비밀번호 찾기에 필요해요"
+    }
+
+    private let subLabel2 = AuthSubLabel().then {
+        $0.text = "사용 중인 이메일을 입력해주세요"
+    }
+
+    private let emailTextField = WatchaTextField(placeholder: "email@address.com").then {
+        $0.keyboardType = .emailAddress
+        $0.returnKeyType = .done
+        $0.rightIcon = .checkOff
+    }
+
+    private let nextButton = CTABool().then {
+        $0.setTitle("다음", for: .normal)
+        $0.isEnabled = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

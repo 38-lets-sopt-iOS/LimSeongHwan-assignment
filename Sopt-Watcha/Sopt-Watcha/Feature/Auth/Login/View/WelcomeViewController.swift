@@ -6,32 +6,27 @@
 //
 
 import SnapKit
+import Then
 import UIKit
 
 class WelcomeViewController: UIViewController {
     var nickName: String?
-    
-    private let logoImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "WatchaLogo")
-        return imageView
-    }()
-    
-    private let welcomeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "가입을 환영합니다"
-        label.font = .head2
-        label.textColor = .white
-        label.textAlignment = .center
-        label.numberOfLines = 2
-        return label
-    }()
-    
-    private let button: CTABool = {
-        let button = CTABool()
-        button.setTitle("메인으로", for: .normal)
-        return button
-    }()
+
+    private let logoImage = UIImageView().then {
+        $0.image = .watchaLogo
+    }
+
+    private let welcomeLabel = UILabel().then {
+        $0.text = "가입을 환영합니다"
+        $0.font = .head2
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.numberOfLines = 2
+    }
+
+    private let button = CTABool().then {
+        $0.setTitle("메인으로", for: .normal)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

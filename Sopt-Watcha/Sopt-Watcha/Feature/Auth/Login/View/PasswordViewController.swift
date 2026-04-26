@@ -6,6 +6,7 @@
 //
 
 import SnapKit
+import Then
 import UIKit
 
 class PasswordViewController: UIViewController {
@@ -19,71 +20,54 @@ class PasswordViewController: UIViewController {
 
     // MARK: - UI
 
-    private let titleLabel: AuthTitleLabel = {
-        let label = AuthTitleLabel()
-        label.text = "사용할 비밀번호를\n입력해주세요"
-        return label
-    }()
-    
-    private let subLabelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 5
-        return stackView
-    }()
-    
+    private let titleLabel = AuthTitleLabel().then {
+        $0.text = "사용할 비밀번호를\n입력해주세요"
+    }
+
+    private let subLabelStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 5
+    }
+
     private let subLabel: AuthSubLabel = .init()
-    
-    private let passwordTextField: WatchaTextField = {
-        let textField = WatchaTextField(placeholder: "비밀번호 입력")
-        textField.returnKeyType = .done
-        textField.isSecureTextEntry = true
-        textField.rightIcon = UIImage(named: "eye-off")
-        return textField
-    }()
-    
-    private let regStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 6
-        return stackView
-    }()
-    
-    private let regIcon: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "enable-off")
-        return imageView
-    }()
-    
-    private let regLabel: UILabel = {
-        let label = UILabel()
-        label.text = "영문, 숫자, 특수문자 포함 10글자 이상"
-        label.font = .body2
-        label.textColor = .gray100
-        return label
-    }()
-    
-    private let nickNameButton: UIButton = {
-        let button = UIButton()
-        button.setTitleColor(.gray100, for: .normal)
-        button.titleLabel?.font = .body2
-        button.setAttributedTitle(
+
+    private let passwordTextField = WatchaTextField(placeholder: "비밀번호 입력").then {
+        $0.returnKeyType = .done
+        $0.isSecureTextEntry = true
+        $0.rightIcon = .eyeOff
+    }
+
+    private let regStackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.spacing = 6
+    }
+
+    private let regIcon = UIImageView().then {
+        $0.image = .enableOff
+    }
+
+    private let regLabel = UILabel().then {
+        $0.text = "영문, 숫자, 특수문자 포함 10글자 이상"
+        $0.font = .body2
+        $0.textColor = .gray100
+    }
+
+    private let nickNameButton = UIButton().then {
+        $0.setTitleColor(.gray100, for: .normal)
+        $0.titleLabel?.font = .body2
+        $0.setAttributedTitle(
             NSAttributedString(
                 string: "닉네임 설정",
                 attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue]
             ),
             for: .normal
         )
-        
-        return button
-    }()
-    
-    private let nextButton: CTABool = {
-        let button = CTABool()
-        button.setTitle("가입하기", for: .normal)
-        button.isEnabled = false
-        return button
-    }()
+    }
+
+    private let nextButton = CTABool().then {
+        $0.setTitle("가입하기", for: .normal)
+        $0.isEnabled = false
+    }
     
     // MARK: - Life Cycle
 
