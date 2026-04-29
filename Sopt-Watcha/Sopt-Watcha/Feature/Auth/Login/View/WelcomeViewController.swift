@@ -5,9 +5,9 @@
 //  Created by 성환 on 4/24/26.
 //
 
+import UIKit
 import SnapKit
 import Then
-import UIKit
 
 class WelcomeViewController: UIViewController {
     var nickName: String?
