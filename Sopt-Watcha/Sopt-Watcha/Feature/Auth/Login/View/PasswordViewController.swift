@@ -163,7 +163,7 @@ class PasswordViewController: UIViewController {
     
     @objc
     func nickNameButtonDidTap() {
-        let nicknameSheet = NicknameSheet()
+        let nicknameSheet = NicknameSheetViewController()
         nicknameSheet.delegate = self
         nicknameSheet.sheetPresentationController?.detents = [.medium()]
         nicknameSheet.sheetPresentationController?.preferredCornerRadius = 12

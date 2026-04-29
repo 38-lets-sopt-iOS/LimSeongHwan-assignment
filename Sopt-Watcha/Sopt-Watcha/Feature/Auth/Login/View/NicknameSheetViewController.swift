@@ -13,7 +13,7 @@ protocol NicknameSheetDelegateProtocol: AnyObject {
     func setNickname(nickname: String)
 }
 
-class NicknameSheet: UIViewController {
+final class NicknameSheetViewController: UIViewController {
     weak var delegate: NicknameSheetDelegateProtocol?
 
     private let titleLabel = UILabel().then {
