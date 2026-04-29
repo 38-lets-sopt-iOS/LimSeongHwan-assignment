@@ -5,9 +5,9 @@
 //  Created by 성환 on 4/24/26.
 //
 
+import UIKit
 import SnapKit
 import Then
-import UIKit
 
 class LoginViewController: UIViewController {
     // MARK: - UI
@@ -89,7 +89,7 @@ class LoginViewController: UIViewController {
     }
 
     @objc
-    func navigateToPasswordVC() {
+    private func navigateToPasswordVC() {
         let passwordVC = PasswordViewController()
         passwordVC.email = emailTextField.text ?? ""
         navigationController?.pushViewController(passwordVC, animated: true)
