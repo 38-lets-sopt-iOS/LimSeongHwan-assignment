@@ -84,7 +84,7 @@ class PasswordViewController: UIViewController {
     private func setUI() {
         subLabelStackView.addStackViews(subLabel)
         regStackView.addStackViews(regIcon, regLabel)
-        view.addSubviews(titleLabel, subLabelStackView, regStackView, passwordTextField, nickNameButton, nextButton)
+        view.addSubviews(titleLabel, subLabelStackView, passwordTextField, regStackView, nickNameButton, nextButton)
     }
     
     private func setLayout() {
