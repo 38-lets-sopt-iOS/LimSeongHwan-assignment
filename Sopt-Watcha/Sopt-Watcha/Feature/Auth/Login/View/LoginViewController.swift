@@ -52,10 +52,6 @@ class LoginViewController: UIViewController {
     private func setUI() {
         subLabelStackView.addStackViews(subLabel, subLabel2)
         view.addSubviews(titleLabel, subLabelStackView, emailTextField, nextButton)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subLabelStackView.translatesAutoresizingMaskIntoConstraints = false
-        emailTextField.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private func setLayout() {

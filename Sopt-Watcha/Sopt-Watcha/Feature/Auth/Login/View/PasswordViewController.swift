@@ -85,12 +85,6 @@ class PasswordViewController: UIViewController {
         subLabelStackView.addStackViews(subLabel)
         regStackView.addStackViews(regIcon, regLabel)
         view.addSubviews(titleLabel, subLabelStackView, regStackView, passwordTextField, nickNameButton, nextButton)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subLabelStackView.translatesAutoresizingMaskIntoConstraints = false
-        regStackView.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        nickNameButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setLayout() {

@@ -37,9 +37,6 @@ class WelcomeViewController: UIViewController {
     
     private func setUI() {
         view.addSubviews(logoImage, welcomeLabel, button)
-        logoImage.translatesAutoresizingMaskIntoConstraints = false
-        welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setLayout() {
