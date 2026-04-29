@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
         $0.rightIcon = .checkOff
     }
 
-    private let nextButton = CTABool().then {
+    private let nextButton = PrimaryButton().then {
         $0.setTitle("다음", for: .normal)
         $0.isEnabled = false
     }

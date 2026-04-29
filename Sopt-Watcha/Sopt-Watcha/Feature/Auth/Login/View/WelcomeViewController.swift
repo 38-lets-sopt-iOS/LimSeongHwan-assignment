@@ -24,7 +24,7 @@ class WelcomeViewController: UIViewController {
         $0.numberOfLines = 2
     }
 
-    private let button = CTABool().then {
+    private let button = PrimaryButton().then {
         $0.setTitle("메인으로", for: .normal)
     }
     

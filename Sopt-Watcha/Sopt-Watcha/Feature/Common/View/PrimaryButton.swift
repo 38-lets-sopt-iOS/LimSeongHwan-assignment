@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CTABool: UIButton {
+class PrimaryButton: UIButton {
     override var isEnabled: Bool {
         didSet {
             self.isEnabled ? self.setEnableButton() : self.setDisableButton()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CTA: UIButton {
+class SecondaryButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
