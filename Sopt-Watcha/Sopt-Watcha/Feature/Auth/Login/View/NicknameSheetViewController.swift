@@ -24,7 +24,7 @@ final class NicknameSheetViewController: UIViewController {
 
     private let nicknameTextField: WatchaTextField = .init(placeholder: "닉네임을 입력해주세요")
 
-    private let button = CTA().then {
+    private let finishButton = CTA().then {
         $0.setTitle("완료", for: .normal)
     }
 
@@ -36,7 +36,7 @@ final class NicknameSheetViewController: UIViewController {
     }
 
     private func setUI() {
-        view.addSubviews(titleLabel, nicknameTextField, button)
+        view.addSubviews(titleLabel, nicknameTextField, finishButton)
         view.backgroundColor = .gray400
     }
 
@@ -50,17 +50,17 @@ final class NicknameSheetViewController: UIViewController {
             $0.horizontalEdges.equalToSuperview().inset(31)
             $0.height.equalTo(47)
         }
-        button.snp.makeConstraints {
+        finishButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(47)
             $0.horizontalEdges.equalToSuperview().inset(22)
             $0.height.equalTo(56)
         }
     }
-    
+
     private func setAction() {
-        button.addTarget(self, action: #selector(didTapFinishButton), for: .touchUpInside)
+        finishButton.addTarget(self, action: #selector(didTapFinishButton), for: .touchUpInside)
     }
-    
+
     @objc
     private func didTapFinishButton() {
         if let nickname = nicknameTextField.text, !nickname.isEmpty {
