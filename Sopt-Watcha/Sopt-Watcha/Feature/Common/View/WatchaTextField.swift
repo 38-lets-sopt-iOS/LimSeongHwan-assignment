@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class WatchaTextField: UITextField {
+final class WatchaTextField: UITextField {
     // MARK: - 프로퍼티
     
     var rightIcon: UIImage? = nil

@@ -159,7 +159,7 @@ class PasswordViewController: UIViewController {
     }
 
     private func updateNextButton() {
-        nextButton.isEnabled = ((passwordTextField.text?.isValidPassword) != false) && hasNickname
+        nextButton.isEnabled = passwordTextField.text?.isValidPassword == true && hasNickname
     }
     
     @objc
