@@ -34,18 +34,17 @@ class SubscribeViewController: BaseUIViewController {
     private let watgorijeumMoreButton = MoreButton()
     private let watgorijeumCollectionView = WatgorijeumViewController()
     
+    private let commingSoonLabel = SectionTitleLabel(title: "공개 예정 콘텐츠")
+    private let commingSoonMoreButton = MoreButton()
+    private let commingSoonCollectionView = CommingSoonViewController()
+    
     // MARK: - SetUp
 
     override func setUp() {
         view.addSubviews(headerView, scrollView)
         scrollView.addSubview(contentView)
-        addChild(bannerView)
-        addChild(newContentCollectionView)
-        addChild(watgorijeumCollectionView)
-        contentView.addSubviews(bannerView.view, newContentLabel, newContentSubLabel, newContentCollectionView.view, watgorijeumImg, watgorijeumSubLabel, watgorijeumMoreButton, watgorijeumCollectionView.view)
-        bannerView.didMove(toParent: self)
-        newContentCollectionView.didMove(toParent: self)
-        watgorijeumCollectionView.didMove(toParent: self)
+        addChilds(bannerView, newContentCollectionView, watgorijeumCollectionView, commingSoonCollectionView)
+        contentView.addSubviews(bannerView.view, newContentLabel, newContentSubLabel, newContentCollectionView.view, watgorijeumImg, watgorijeumSubLabel, watgorijeumMoreButton, watgorijeumCollectionView.view, commingSoonLabel, commingSoonMoreButton, commingSoonCollectionView.view)
     }
     
     // MARK: - 레이아웃
@@ -97,6 +96,19 @@ class SubscribeViewController: BaseUIViewController {
             $0.top.equalTo(watgorijeumSubLabel.snp.bottom).offset(7)
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(153)
+        }
+        commingSoonLabel.snp.makeConstraints {
+            $0.top.equalTo(watgorijeumCollectionView.view.snp.bottom).offset(45)
+            $0.leading.equalTo(watgorijeumImg)
+        }
+        commingSoonMoreButton.snp.makeConstraints {
+            $0.top.equalTo(commingSoonLabel)
+            $0.trailing.equalToSuperview().inset(22)
+        }
+        commingSoonCollectionView.view.snp.makeConstraints {
+            $0.top.equalTo(commingSoonLabel.snp.bottom).offset(15)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(155)
             $0.bottom.equalToSuperview().inset(50)
         }
     }
