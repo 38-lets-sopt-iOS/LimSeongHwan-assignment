@@ -32,6 +32,7 @@ class SubscribeViewController: BaseUIViewController {
     }
     private let watgorijeumSubLabel = SectionSubLabel(title: "예능부터 드라마까지!")
     private let watgorijeumMoreButton = MoreButton()
+    private let watgorijeumCollectionView = WatgorijeumViewController()
     
     // MARK: - SetUp
 
@@ -40,9 +41,11 @@ class SubscribeViewController: BaseUIViewController {
         scrollView.addSubview(contentView)
         addChild(bannerView)
         addChild(newContentCollectionView)
-        contentView.addSubviews(bannerView.view, newContentLabel, newContentSubLabel, newContentCollectionView.view, watgorijeumImg, watgorijeumSubLabel, watgorijeumMoreButton)
+        addChild(watgorijeumCollectionView)
+        contentView.addSubviews(bannerView.view, newContentLabel, newContentSubLabel, newContentCollectionView.view, watgorijeumImg, watgorijeumSubLabel, watgorijeumMoreButton, watgorijeumCollectionView.view)
         bannerView.didMove(toParent: self)
         newContentCollectionView.didMove(toParent: self)
+        watgorijeumCollectionView.didMove(toParent: self)
     }
     
     // MARK: - 레이아웃
@@ -77,7 +80,24 @@ class SubscribeViewController: BaseUIViewController {
             $0.top.equalTo(newContentSubLabel.snp.bottom).offset(7)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(153)
-            $0.bottom.equalToSuperview().inset(20)
+        }
+        watgorijeumImg.snp.makeConstraints {
+            $0.top.equalTo(newContentCollectionView.view.snp.bottom).offset(45)
+            $0.leading.equalTo(newContentLabel)
+        }
+        watgorijeumSubLabel.snp.makeConstraints {
+            $0.top.equalTo(watgorijeumImg.snp.bottom).offset(8.5)
+            $0.leading.equalTo(watgorijeumImg)
+        }
+        watgorijeumMoreButton.snp.makeConstraints {
+            $0.top.equalTo(watgorijeumSubLabel)
+            $0.trailing.equalToSuperview().inset(22)
+        }
+        watgorijeumCollectionView.view.snp.makeConstraints {
+            $0.top.equalTo(watgorijeumSubLabel.snp.bottom).offset(7)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(153)
+            $0.bottom.equalToSuperview().inset(50)
         }
     }
 }
