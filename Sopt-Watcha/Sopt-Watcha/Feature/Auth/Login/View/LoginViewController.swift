@@ -35,10 +35,7 @@ class LoginViewController: UIViewController {
         $0.rightIcon = .checkOff
     }
 
-    private let nextButton = PrimaryButton().then {
-        $0.setTitle("다음", for: .normal)
-        $0.isEnabled = false
-    }
+    private let nextButton: PrimaryButton = .init(title: "다음", isEnabled: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()

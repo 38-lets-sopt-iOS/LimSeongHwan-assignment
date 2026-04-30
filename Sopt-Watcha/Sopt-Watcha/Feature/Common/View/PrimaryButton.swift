@@ -14,10 +14,11 @@ class PrimaryButton: UIButton {
         }
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(title: String, isEnabled: Bool = true) {
+        super.init(frame: .zero)
         setUpFillButton()
-        self.isEnabled = true
+        self.setTitle(title, for: .normal)
+        self.isEnabled = isEnabled
     }
 
     required init?(coder: NSCoder) {

@@ -8,16 +8,17 @@
 import UIKit
 
 class SecondaryButton: UIButton {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setup()
+    init(title: String) {
+        super.init(frame: .zero)
+        setTitle(title, for: .normal)
+        setUp()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setup() {
+    private func setUp() {
         backgroundColor = .gray600
         self.layer.cornerRadius = 10
         self.titleLabel?.textAlignment = .center

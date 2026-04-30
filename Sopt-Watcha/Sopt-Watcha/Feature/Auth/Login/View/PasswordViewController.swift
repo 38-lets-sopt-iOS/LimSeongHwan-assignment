@@ -64,10 +64,7 @@ class PasswordViewController: UIViewController {
         )
     }
 
-    private let nextButton = PrimaryButton().then {
-        $0.setTitle("가입하기", for: .normal)
-        $0.isEnabled = false
-    }
+    private let nextButton: PrimaryButton = .init(title: "다음", isEnabled: false)
     
     // MARK: - Life Cycle
 

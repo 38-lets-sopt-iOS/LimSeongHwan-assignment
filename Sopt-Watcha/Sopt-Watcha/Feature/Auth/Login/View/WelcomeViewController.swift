@@ -24,9 +24,7 @@ class WelcomeViewController: UIViewController {
         $0.numberOfLines = 2
     }
 
-    private let button = PrimaryButton().then {
-        $0.setTitle("메인으로", for: .normal)
-    }
+    private let toMainButton: PrimaryButton = .init(title: "메인으로")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +34,7 @@ class WelcomeViewController: UIViewController {
     }
     
     private func setUI() {
-        view.addSubviews(logoImage, welcomeLabel, button)
+        view.addSubviews(logoImage, welcomeLabel, toMainButton)
     }
     
     private func setLayout() {
@@ -48,7 +46,7 @@ class WelcomeViewController: UIViewController {
             $0.top.equalTo(logoImage.snp.bottom).offset(54)
             $0.centerX.equalToSuperview()
         }
-        button.snp.makeConstraints {
+        toMainButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(13)
             $0.horizontalEdges.equalToSuperview().inset(22)
             $0.height.equalTo(56)

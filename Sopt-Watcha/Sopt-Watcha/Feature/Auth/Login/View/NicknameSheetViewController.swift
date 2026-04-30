@@ -24,9 +24,7 @@ final class NicknameSheetViewController: UIViewController {
 
     private let nicknameTextField: WatchaTextField = .init(placeholder: "닉네임을 입력해주세요")
 
-    private let finishButton = SecondaryButton().then {
-        $0.setTitle("완료", for: .normal)
-    }
+    private let finishButton: SecondaryButton = .init(title: "확인")
 
     override func viewDidLoad() {
         super.viewDidLoad()
