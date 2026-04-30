@@ -14,7 +14,7 @@ extension String {
     }
 
     var isValidPassword: Bool {
-        let regex = /^(?=.*[!_@$%^&+=])[A-Za-z0-9!_@$%^&+=]{8,15}$/
+        let regex = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!_@$%^&+=])[A-Za-z0-9!_@$%^&+=]{10,}$/
         return self.wholeMatch(of: regex) != nil
     }
 }
