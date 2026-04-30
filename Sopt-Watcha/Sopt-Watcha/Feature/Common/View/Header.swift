@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 import Then
 
-final class Header: UIView {
-    
+final class Header: BaseUIView {
+
     // MARK: - UI
 
     private let headerLabel = UILabel().then {
@@ -26,35 +26,35 @@ final class Header: UIView {
     private let videoButton = UIButton().then {
         $0.setImage(.videoIcon, for: .normal)
     }
-    
+
     private let notificationButton = UIButton().then {
         $0.setImage(.notificationIcon, for: .normal)
     }
-    
+
     private let profileButton = UIButton().then {
         $0.setImage(.profileIcon, for: .normal)
     }
-    
-    // MARK: - 레이아웃
-    
+
+    // MARK: - Init
+
     init(title: String) {
         super.init(frame: .zero)
-        setUp(title: title)
-        setLayout()
+        headerLabel.text = title
     }
     
-    required init?(coder: NSCoder) {
+    @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUp(title: String) {
-        self.headerLabel.text = title
+    // MARK: - Setup
+
+    override func setUp() {
         headerButtonStackView.addStackViews(videoButton, notificationButton, profileButton)
-        self.addSubviews(headerLabel, headerButtonStackView)
-        self.addBottomBorder(color: .gray600)
+        addSubviews(headerLabel, headerButtonStackView)
+        addBottomBorder(color: .gray600)
     }
-    
-    private func setLayout() {
+
+    override func setLayout() {
         snp.makeConstraints {
             $0.height.equalTo(56)
         }
@@ -67,5 +67,5 @@ final class Header: UIView {
             $0.trailing.equalToSuperview().inset(30)
         }
     }
-    
+
 }
