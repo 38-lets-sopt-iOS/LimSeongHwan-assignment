@@ -180,7 +180,7 @@ class PasswordViewController: UIViewController {
     private func togglePasswordTapped() {
         passwordTextField.isSecureTextEntry.toggle()
         let isSecure = passwordTextField.isSecureTextEntry
-        passwordTextField.updateRightIcon(UIImage(named: isSecure ? "eye-off" : "eye-on"))
+        passwordTextField.updateRightIcon(isSecure ? .eyeOff : .eyeOn)
     }
 }
 
