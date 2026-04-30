@@ -47,5 +47,5 @@ extension UIFont {
     static let medium = UIFont.pretendard(size: 18, weight: .medium)
     static let body1 = UIFont.pretendard(size: 12, weight: .medium)
     static let body2 = UIFont.pretendard(size: 12, weight: .regular)
-    static let cap = UIFont.pretendard(size: 12, weight: .light)
+    static let cap1 = UIFont.pretendard(size: 12, weight: .light)
 }
