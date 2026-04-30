@@ -87,8 +87,7 @@ class LoginViewController: UIViewController {
 
     @objc
     private func navigateToPasswordVC() {
-        let passwordVC = PasswordViewController()
-        passwordVC.email = emailTextField.text ?? ""
+        let passwordVC = PasswordViewController(email: emailTextField.text ?? "")
         navigationController?.pushViewController(passwordVC, animated: true)
     }
 }

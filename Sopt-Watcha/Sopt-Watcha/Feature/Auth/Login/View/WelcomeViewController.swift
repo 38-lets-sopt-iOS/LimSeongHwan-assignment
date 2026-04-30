@@ -10,7 +10,7 @@ import SnapKit
 import Then
 
 class WelcomeViewController: UIViewController {
-    var nickName: String?
+    private var nickName: String?
 
     private let logoImage = UIImageView().then {
         $0.image = .watchaLogo
@@ -30,7 +30,6 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
-        bind()
     }
     
     private func setUI() {
@@ -53,7 +52,12 @@ class WelcomeViewController: UIViewController {
         }
     }
     
-    func bind() {
-        welcomeLabel.text = "\(nickName ?? "닉네임")님\n가입을 환영합니다!"
+    init(nickName: String) {
+        super.init(nibName: nil, bundle: nil)
+        welcomeLabel.text = "\(nickName)님\n가입을 환영합니다!"
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

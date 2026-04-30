@@ -12,8 +12,8 @@ import Then
 class PasswordViewController: UIViewController {
     // MARK: - 프로퍼티
 
-    var email: String = ""
-    var nickName: String = ""
+    private var email: String = ""
+    private var nickName: String = ""
     private var hasNickname: Bool = false {
         didSet { updateNextButton() }
     }
@@ -72,7 +72,6 @@ class PasswordViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
-        bind()
         setAction()
     }
     
@@ -115,8 +114,13 @@ class PasswordViewController: UIViewController {
     
     // MARK: - Bind
 
-    func bind() {
-        subLabel.text = "\(email)로 가입중"
+    init(email: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.email = email
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func configure(nickName: String?) {
@@ -159,7 +163,7 @@ class PasswordViewController: UIViewController {
     }
     
     @objc
-    func nickNameButtonDidTap() {
+    private func nickNameButtonDidTap() {
         let nicknameSheet = NicknameSheetViewController()
         nicknameSheet.delegate = self
         nicknameSheet.sheetPresentationController?.detents = [.medium()]
@@ -170,10 +174,8 @@ class PasswordViewController: UIViewController {
     
     @objc
     private func navigateToWelcomeVC() {
-        let WelcomeVC = WelcomeViewController()
-        WelcomeVC.nickName = nickName
+        let WelcomeVC = WelcomeViewController(nickName: nickNameButton.titleLabel?.text ?? "")
         navigationController?.pushViewController(WelcomeVC, animated: true)
-        
     }
     
     @objc
