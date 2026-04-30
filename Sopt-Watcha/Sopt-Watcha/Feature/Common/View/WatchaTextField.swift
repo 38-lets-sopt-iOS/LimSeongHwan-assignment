@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class WatchaTextField: UITextField {
     // MARK: - 프로퍼티
@@ -15,18 +17,11 @@ class WatchaTextField: UITextField {
 
     // MARK: - UI
     
-    private let rightIconButton: UIButton = {
-        let button = UIButton()
-        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        return button
-    }()
+    private let rightIconButton = UIButton()
 
-    private let clearButton: UIButton = {
-        let button = UIButton()
-        button.setImage(.closeSquare, for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        return button
-    }()
+    private let clearButton = UIButton().then {
+        $0.setImage(.closeSquare, for: .normal)
+    }
 
     init(placeholder: String) {
         super.init(frame: .zero)
@@ -87,16 +82,26 @@ class WatchaTextField: UITextField {
     }
 
     private func makeFocusRightView() -> UIView {
-        var totalWidth = clearButton.frame.width
-        if rightIcon != nil { totalWidth += 24 + 8 }
-        let container = UIView(frame: CGRect(x: 0, y: 0, width: totalWidth + 10, height: clearButton.frame.height))
-        clearButton.frame.origin.x = 0
+        let hasIcon = rightIcon != nil
+        let totalWidth: CGFloat = 24 + (hasIcon ? 4 + 24 : 0) + 16
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: totalWidth, height: 24))
+
         container.addSubview(clearButton)
+        clearButton.snp.remakeConstraints {
+            $0.leading.centerY.equalToSuperview()
+            $0.width.height.equalTo(24)
+        }
+
         if let icon = rightIcon {
             rightIconButton.setImage(icon, for: .normal)
-            rightIconButton.frame = CGRect(x: clearButton.frame.width + 8, y: 0, width: 24, height: 24)
             container.addSubview(rightIconButton)
+            rightIconButton.snp.remakeConstraints {
+                $0.leading.equalTo(clearButton.snp.trailing).offset(4)
+                $0.centerY.equalToSuperview()
+                $0.width.height.equalTo(24)
+            }
         }
+
         return container
     }
 
