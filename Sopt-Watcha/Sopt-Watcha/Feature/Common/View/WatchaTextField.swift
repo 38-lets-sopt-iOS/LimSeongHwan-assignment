@@ -8,9 +8,13 @@
 import UIKit
 
 class WatchaTextField: UITextField {
+    // MARK: - 프로퍼티
+    
     var rightIcon: UIImage? = nil
     var onRightIconTapped: (() -> Void)? = nil
 
+    // MARK: - UI
+    
     private let rightIconButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
@@ -27,6 +31,7 @@ class WatchaTextField: UITextField {
     init(placeholder: String) {
         super.init(frame: .zero)
         setup(placeholder: placeholder)
+        setAction()
     }
 
     override func becomeFirstResponder() -> Bool {
@@ -45,6 +50,8 @@ class WatchaTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - 레이아웃
+    
     private func setup(placeholder: String) {
         backgroundColor = .gray600
         layer.cornerRadius = 10
@@ -54,6 +61,11 @@ class WatchaTextField: UITextField {
         tintColor = .watchaPink
         leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
         leftViewMode = .always
+    }
+    
+    // MARK: - 액션
+    
+    private func setAction() {
         clearButton.addTarget(self, action: #selector(didTapClearButton), for: .touchUpInside)
         rightIconButton.addTarget(self, action: #selector(didTapRightIcon), for: .touchUpInside)
     }
