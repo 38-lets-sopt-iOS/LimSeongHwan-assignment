@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA26C9FD2F9E7ECD0074E792 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CA26C9FC2F9E7ECD0074E792 /* Then */; };
 		CAA426522F9A3C3E00A4572E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CAA426512F9A3C3E00A4572E /* SnapKit */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAA426522F9A3C3E00A4572E /* SnapKit in Frameworks */,
+				CA26C9FD2F9E7ECD0074E792 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +86,7 @@
 			name = "Sopt-Watcha";
 			packageProductDependencies = (
 				CAA426512F9A3C3E00A4572E /* SnapKit */,
+				CA26C9FC2F9E7ECD0074E792 /* Then */,
 			);
 			productName = "Sopt-Watcha";
 			productReference = CAA426332F9A38CA00A4572E /* Sopt-Watcha.app */;
@@ -115,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				CAA426502F9A3C3E00A4572E /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CA26C9FB2F9E7ECD0074E792 /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CAA426342F9A38CA00A4572E /* Products */;
@@ -350,6 +354,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CA26C9FB2F9E7ECD0074E792 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		CAA426502F9A3C3E00A4572E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -361,6 +373,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CA26C9FC2F9E7ECD0074E792 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA26C9FB2F9E7ECD0074E792 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
 		CAA426512F9A3C3E00A4572E /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CAA426502F9A3C3E00A4572E /* XCRemoteSwiftPackageReference "SnapKit" */;
