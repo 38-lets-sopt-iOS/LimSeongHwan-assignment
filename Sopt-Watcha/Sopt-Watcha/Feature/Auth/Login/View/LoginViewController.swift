@@ -62,11 +62,11 @@ class LoginViewController: UIViewController {
         }
         emailTextField.snp.makeConstraints {
             $0.top.equalTo(subLabelStackView.snp.bottom).offset(27)
-            $0.leading.trailing.equalToSuperview().inset(31)
+            $0.horizontalEdges.equalToSuperview().inset(31)
             $0.height.equalTo(47)
         }
         nextButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(22)
+            $0.horizontalEdges.equalToSuperview().inset(22)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(13)
             $0.height.equalTo(56)
         }
