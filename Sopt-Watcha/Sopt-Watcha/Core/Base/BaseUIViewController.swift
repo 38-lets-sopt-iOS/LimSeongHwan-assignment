@@ -13,12 +13,15 @@ class BaseUIViewController: UIViewController {
         view.backgroundColor = .watchaBlack
         
         setUp()
+        register()
         setLayout()
         setAction()
         setDelegate()
     }
     
     func setUp() {}
+    
+    func register() {}
     
     func setLayout() {}
     

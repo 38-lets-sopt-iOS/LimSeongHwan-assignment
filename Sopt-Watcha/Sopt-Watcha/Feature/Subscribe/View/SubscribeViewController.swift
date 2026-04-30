@@ -23,17 +23,29 @@ class SubscribeViewController: BaseUIViewController {
     
     private let bannerView = BannerViewController()
     
-    private let 
+    private let newContentLabel = SectionTitleLabel(title: "방금 막 도착한 신상 컨텐츠")
+    private let newContentSubLabel = SectionSubLabel(title: "예능부터 드라마까지!")
+    private let newContentCollectionView = NewContentViewController()
     
-    // MARK: - 레이아웃
+    private let watgorijeumImg = UIImageView().then {
+        $0.image = .watgorijeum
+    }
+    private let watgorijeumSubLabel = SectionSubLabel(title: "예능부터 드라마까지!")
+    private let watgorijeumMoreButton = MoreButton()
+    
+    // MARK: - SetUp
 
     override func setUp() {
         view.addSubviews(headerView, scrollView)
         scrollView.addSubview(contentView)
         addChild(bannerView)
-        contentView.addSubview(bannerView.view)
+        addChild(newContentCollectionView)
+        contentView.addSubviews(bannerView.view, newContentLabel, newContentSubLabel, newContentCollectionView.view, watgorijeumImg, watgorijeumSubLabel, watgorijeumMoreButton)
         bannerView.didMove(toParent: self)
+        newContentCollectionView.didMove(toParent: self)
     }
+    
+    // MARK: - 레이아웃
     
     override func setLayout() {
         headerView.snp.makeConstraints {
@@ -53,6 +65,19 @@ class SubscribeViewController: BaseUIViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(403)
         }
+        newContentLabel.snp.makeConstraints {
+            $0.top.equalTo(bannerView.view.snp.bottom).offset(34)
+            $0.leading.equalToSuperview().inset(21)
+        }
+        newContentSubLabel.snp.makeConstraints {
+            $0.top.equalTo(newContentLabel.snp.bottom).offset(3)
+            $0.leading.equalTo(newContentLabel.snp.leading)
+        }
+        newContentCollectionView.view.snp.makeConstraints {
+            $0.top.equalTo(newContentSubLabel.snp.bottom).offset(7)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(153)
+            $0.bottom.equalToSuperview().inset(20)
+        }
     }
-    
 }
