@@ -17,10 +17,13 @@ class WatchaTextField: UITextField {
 
     // MARK: - UI
     
-    private let rightIconButton = UIButton()
+    private let rightIconButton = UIButton().then {
+        $0.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+    }
 
     private let clearButton = UIButton().then {
         $0.setImage(.closeSquare, for: .normal)
+        $0.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
     }
 
     init(placeholder: String) {
@@ -82,26 +85,16 @@ class WatchaTextField: UITextField {
     }
 
     private func makeFocusRightView() -> UIView {
-        let hasIcon = rightIcon != nil
-        let totalWidth: CGFloat = 24 + (hasIcon ? 4 + 24 : 0) + 16
-        let container = UIView(frame: CGRect(x: 0, y: 0, width: totalWidth, height: 24))
-
+        var totalWidth = clearButton.frame.width
+        if rightIcon != nil { totalWidth += 24 + 4 }
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: totalWidth + 16, height: clearButton.frame.height))
+        clearButton.frame.origin.x = 0
         container.addSubview(clearButton)
-        clearButton.snp.remakeConstraints {
-            $0.leading.centerY.equalToSuperview()
-            $0.width.height.equalTo(24)
-        }
-
         if let icon = rightIcon {
             rightIconButton.setImage(icon, for: .normal)
+            rightIconButton.frame = CGRect(x: clearButton.frame.width + 4, y: 0, width: 24, height: 24)
             container.addSubview(rightIconButton)
-            rightIconButton.snp.remakeConstraints {
-                $0.leading.equalTo(clearButton.snp.trailing).offset(4)
-                $0.centerY.equalToSuperview()
-                $0.width.height.equalTo(24)
-            }
         }
-
         return container
     }
 
