@@ -14,7 +14,7 @@ class WebtoonViewController: BaseUIViewController {
         $0.text = "Webtoon"
     }
     
-    override func setUI() {
+    override func setUp() {
         view.addSubviews(label)
     }
 }

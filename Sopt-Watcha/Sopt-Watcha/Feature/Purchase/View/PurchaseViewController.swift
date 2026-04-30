@@ -14,7 +14,7 @@ class PurchaseViewController: BaseUIViewController {
         $0.text = "purchase"
     }
     
-    override func setUI() {
+    override func setUp() {
         view.addSubviews(label)
     }
 }

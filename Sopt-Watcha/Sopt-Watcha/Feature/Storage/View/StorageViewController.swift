@@ -14,7 +14,7 @@ class StorageViewController: BaseUIViewController {
         $0.text = "Storage"
     }
     
-    override func setUI() {
+    override func setUp() {
         view.addSubviews(label)
     }
 }

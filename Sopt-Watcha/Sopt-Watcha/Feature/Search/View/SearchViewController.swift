@@ -14,7 +14,7 @@ class SearchViewController: BaseUIViewController {
         $0.text = "Search"
     }
     
-    override func setUI() {
+    override func setUp() {
         view.addSubviews(label)
     }
 }
