@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class BannerViewController: UIViewController {
+class BannerViewController: BaseUIViewController {
     // MARK: - 프로퍼티
 
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -21,37 +21,25 @@ class BannerViewController: UIViewController {
     
     // MARK: - 라이프 사이클
 
-    private var isLayoutConfigured = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUp()
-        register()
-        setLayout()
-        setDelegate()
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        guard !isLayoutConfigured else { return }
-        isLayoutConfigured = true
         setCollectionViewLayout()
     }
     
     // MARK: - 레이아웃
     
-    private func setUp() {
+    override func setUp() {
         collectionView.backgroundColor = .clear
         view.addSubview(collectionView)
     }
     
-    private func setLayout() {
+    override func setLayout() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
     
-    private func setDelegate() {
+    override func setDelegate() {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -68,7 +56,7 @@ class BannerViewController: UIViewController {
         collectionView.setCollectionViewLayout(flowLayout, animated: true)
     }
     
-    private func register() {
+    override func register() {
         collectionView.register(BannerCollectionViewCell.self, forCellWithReuseIdentifier: BannerCollectionViewCell.identifier)
     }
 }

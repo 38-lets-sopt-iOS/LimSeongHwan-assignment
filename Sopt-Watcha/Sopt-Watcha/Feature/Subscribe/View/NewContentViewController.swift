@@ -21,12 +21,8 @@ class NewContentViewController: BaseUIViewController {
     
     // MARK: - 라이프 사이클
     
-    private var isLayoutConfigured = false
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        guard !isLayoutConfigured else { return }
-        isLayoutConfigured = true
+    override func viewDidLoad() {
+        super.viewDidLoad()
         setCollectionLayout()
     }
 
