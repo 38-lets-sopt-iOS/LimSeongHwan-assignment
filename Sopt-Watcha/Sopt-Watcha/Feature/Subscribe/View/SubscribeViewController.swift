@@ -38,13 +38,17 @@ class SubscribeViewController: BaseUIViewController {
     private let commingSoonMoreButton = MoreButton()
     private let commingSoonCollectionView = CommingSoonViewController()
     
+    private let watchaPartyLabel = SectionTitleLabel(title: "왓챠 파티")
+    private let watchaPartyMoreButton = MoreButton()
+    private let watchaPartyCollectionView = WatchaPartyViewController()
+    
     // MARK: - SetUp
 
     override func setUp() {
         view.addSubviews(headerView, scrollView)
         scrollView.addSubview(contentView)
-        addChilds(bannerView, newContentCollectionView, watgorijeumCollectionView, commingSoonCollectionView)
-        contentView.addSubviews(bannerView.view, newContentLabel, newContentSubLabel, newContentCollectionView.view, watgorijeumImg, watgorijeumSubLabel, watgorijeumMoreButton, watgorijeumCollectionView.view, commingSoonLabel, commingSoonMoreButton, commingSoonCollectionView.view)
+        addChilds(bannerView, newContentCollectionView, watgorijeumCollectionView, commingSoonCollectionView, watchaPartyCollectionView)
+        contentView.addSubviews(bannerView.view, newContentLabel, newContentSubLabel, newContentCollectionView.view, watgorijeumImg, watgorijeumSubLabel, watgorijeumMoreButton, watgorijeumCollectionView.view, commingSoonLabel, commingSoonMoreButton, commingSoonCollectionView.view, watchaPartyLabel, watchaPartyMoreButton, watchaPartyCollectionView.view)
     }
     
     // MARK: - 레이아웃
@@ -109,6 +113,19 @@ class SubscribeViewController: BaseUIViewController {
             $0.top.equalTo(commingSoonLabel.snp.bottom).offset(15)
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(155)
+        }
+        watchaPartyLabel.snp.makeConstraints {
+            $0.top.equalTo(commingSoonCollectionView.view.snp.bottom).offset(45)
+            $0.leading.equalTo(commingSoonLabel)
+        }
+        watchaPartyMoreButton.snp.makeConstraints {
+            $0.top.equalTo(watchaPartyLabel)
+            $0.trailing.equalToSuperview().inset(22)
+        }
+        watchaPartyCollectionView.view.snp.makeConstraints {
+            $0.top.equalTo(watchaPartyLabel.snp.bottom).offset(14)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(185)
             $0.bottom.equalToSuperview().inset(50)
         }
     }
