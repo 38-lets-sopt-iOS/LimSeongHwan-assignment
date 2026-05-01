@@ -20,7 +20,9 @@ final class MainTabBarController: UITabBarController {
         appearance.stackedLayoutAppearance.selected.iconColor = .watchaWhite
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.font: UIFont.body2, .foregroundColor: UIColor.watchaWhite]
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.font: UIFont.body2, .foregroundColor: UIColor.gray500]
+        appearance.backgroundColor = .watchaBlack
         tabBar.standardAppearance = appearance
+        tabBar.scrollEdgeAppearance = appearance
         tabBar.backgroundColor = .watchaBlack
         tabBar.unselectedItemTintColor = .gray500
     }
