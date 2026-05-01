@@ -30,6 +30,7 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setLayout()
+        setAciton()
     }
     
     private func setUI() {
@@ -59,5 +60,16 @@ class WelcomeViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setAciton() {
+        toMainButton.addTarget(self, action: #selector(toMainButtonDidTap), for: .touchUpInside)
+    }
+    
+    @objc private func toMainButtonDidTap() {
+        guard let window = view.window else { return }
+        window.rootViewController = MainTabBarController()
+        
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
 }
