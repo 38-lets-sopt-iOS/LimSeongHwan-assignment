@@ -1,5 +1,5 @@
 //
-//  Navbar.swift
+//  MainTabBarController.swift
 //  Sopt-Watcha
 //
 //  Created by 성환 on 4/30/26.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class Navbar: UITabBarController {
+final class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
