@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct RootView: View {
+    init() {
+        UITabBar.appearance().unselectedItemTintColor = .gray500
+    }
+    
     var body: some View {
         TabView {
             SubscribeView()
@@ -31,6 +35,7 @@ struct RootView: View {
                     Label("보관함", image: "Folder")
                 }
         }
+        .tint(.watchaWhite)
         .toolbarBackground(Color.black, for: .tabBar)
         .toolbarBackground(.visible, for: .tabBar)
         .toolbarColorScheme(.dark, for: .tabBar)
