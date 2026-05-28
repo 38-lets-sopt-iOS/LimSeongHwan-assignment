@@ -26,6 +26,7 @@ struct CommonHeader: View {
                     Image("Profile")
                 }
             }
+            .tint(.watchaWhite)
         }
         .padding(.trailing, 30)
         .padding(.leading, 28)
