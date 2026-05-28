@@ -10,9 +10,22 @@
 		CA130CDF2FC84A580006C019 /* SwiftUI-Watcha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Watcha.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CA130D5A2FC8BB9A0006C019 /* Exceptions for "SwiftUI-Watcha" folder in "SwiftUI-Watcha" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				App/Resources/Info.plist,
+			);
+			target = CA130CDE2FC84A570006C019 /* SwiftUI-Watcha */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CA130CE12FC84A580006C019 /* SwiftUI-Watcha */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CA130D5A2FC8BB9A0006C019 /* Exceptions for "SwiftUI-Watcha" folder in "SwiftUI-Watcha" target */,
+			);
 			path = "SwiftUI-Watcha";
 			sourceTree = "<group>";
 		};
