@@ -11,7 +11,10 @@ struct SubscribeView: View {
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            VStack() {
+            VStack(spacing: 0) {
+                MainPosterScrollView(posters: MainPoster.dummy)
+                    .padding(.top, 28)
+                Spacer()
             }
         }
     }
@@ -19,4 +22,5 @@ struct SubscribeView: View {
 
 #Preview {
     SubscribeView()
+        .preferredColorScheme(.dark)
 }
