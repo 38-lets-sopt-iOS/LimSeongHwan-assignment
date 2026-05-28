@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct CommonHeader: View {
+    var title: String
     var body: some View {
         HStack {
-            Text("구독")
+            Text(title)
                 .font(.head1)
                 .foregroundStyle(.watchaWhite)
             Spacer()
@@ -32,10 +33,11 @@ struct CommonHeader: View {
         .padding(.leading, 28)
         .frame(maxWidth: .infinity)
         .frame(height: 56)
+        .background(.watchaBlack)
     }
 }
 
 #Preview {
-    CommonHeader()
+    CommonHeader(title: "구독")
         .preferredColorScheme(.dark)
 }
