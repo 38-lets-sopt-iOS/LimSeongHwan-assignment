@@ -11,10 +11,13 @@ struct SubscribeView: View {
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            VStack(spacing: 0) {
-                MainPosterScrollView(posters: MainPoster.dummy)
-                    .padding(.top, 28)
-                Spacer()
+            ScrollView {
+                VStack(spacing: 0) {
+                    MainPosterScrollView(posters: MainPoster.dummy)
+                        .padding(.top, 28)
+                        .padding(.bottom, 34)
+                    NewContentSectionView(newContentItem: NewContentModel.dummy)
+                }
             }
         }
     }

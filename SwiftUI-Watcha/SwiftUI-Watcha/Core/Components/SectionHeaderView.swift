@@ -47,7 +47,6 @@ struct SectionHeaderView: View {
                 }
             }
         }
-        .padding(.horizontal, 28)
     }
 }
 
