@@ -11,6 +11,10 @@ struct SubscribeView: View {
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
+            VStack(spacing: 0) {
+                CommonHeader()
+                Spacer()
+            }
         }
     }
 }
