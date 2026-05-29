@@ -17,7 +17,10 @@ struct SubscribeView: View {
                         .padding(.top, 28)
                         .padding(.bottom, 34)
                     NewContentSectionView(newContentItem: NewContentModel.dummy)
+                        .padding(.bottom, 45)
+                    WatgorijeumSectionView()
                 }
+                .padding(.bottom, 50)
             }
         }
     }
