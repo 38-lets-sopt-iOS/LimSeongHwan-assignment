@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct SwiftUI_WatchaApp: App {
+    @State private var showMain = false
+
     var body: some Scene {
         WindowGroup {
-            RootView()
+            if showMain {
+                RootView()
+            } else {
+                WelcomeView {
+                    showMain = true
+                }
+            }
         }
     }
 }

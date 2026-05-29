@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    var onMainTapped: () -> Void = {}
+
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -33,7 +35,7 @@ struct WelcomeView: View {
 
                 Spacer()
 
-                Button(action: {}) {
+                Button(action: onMainTapped) {
                     Text("메인으로")
                         .font(.medium)
                         .foregroundStyle(.white)
