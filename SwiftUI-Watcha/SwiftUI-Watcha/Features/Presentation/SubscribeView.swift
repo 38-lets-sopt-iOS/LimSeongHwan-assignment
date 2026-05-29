@@ -21,6 +21,8 @@ struct SubscribeView: View {
                     WatgorijeumSectionView()
                         .padding(.bottom, 43)
                     CommingSoonSectionView()
+                        .padding(.bottom, 45)
+                    WatchaPartySectionView()
                 }
                 .padding(.bottom, 50)
             }
